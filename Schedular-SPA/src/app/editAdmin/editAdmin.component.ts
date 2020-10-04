@@ -20,7 +20,7 @@ export class EditAdminComponent implements OnInit {
   userMemberModels;
   currentUserName;
   firstname: any;
-  LastName: any;
+  lastname: any;
   usernameSelected;
 
   constructor(
@@ -35,21 +35,20 @@ export class EditAdminComponent implements OnInit {
     this.userMemberModels = this.stateStorageService.getUserMemberStorage();
     this.CreateForm();
     console.log(this.userMemberModels);
-
-  }
+   }
 UpdateUser() {
     this.usernameSelected = this.userMemberModels.username;
 
 
-    this.currentUserName = this.editForm.value.currentUserName.username,
+    this.currentUserName = this.editForm.value.currentUserName,
     this.firstname = this.editForm.value.firstname,
-    this.LastName = this.editForm.value.LastName;
+    this.lastname = this.editForm.value.lastname;
 
     console.log(this.currentUserName);
 
-    console.log(this.currentUserName, this.firstname , this.LastName);
+    console.log(this.currentUserName, this.firstname , this.lastname);
 
-    this.editNameService.puteditName(this.usernameSelected  , this.firstname, this.LastName).subscribe(next => {
+    this.editNameService.puteditName(this.currentUserName  , this.firstname, this.lastname).subscribe(next => {
       alert('update sucessful');
   }, error => {
       alert('something went wrong');
@@ -58,13 +57,13 @@ UpdateUser() {
 
 }
 
-CreateForm() {
-  this.editForm = new FormGroup({
-    currentUserName: new FormControl(''),
-    firstname: new FormControl(''),
-    LastName: new FormControl('')
-  });
-}
+   CreateForm() {
+    this.editForm = new FormGroup({
+      currentUserName: new FormControl(''),
+      firstname: new FormControl(''),
+      lastname: new FormControl('')
+    });
+  }
 
 
   loggedIn() {
